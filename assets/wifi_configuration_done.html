@@ -1,52 +1,163 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>WiFi Configuration</title>
+    <title>Cimi Robot Network</title>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="referrer no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <style>
+    <style type="text/css">
+        :root {
+            --primary: #0066FF;
+            --primary-hover: #0052cc;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+            --radius-xl: 16px;
+            --radius-lg: 12px;
+            --radius-md: 8px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out;
+        }
+
         body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            overflow: hidden;
+            padding: 20px;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Header & Logo */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+        }
+
+        /* Card Style */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
+            padding: 40px 24px;
+            border: 1px solid var(--border);
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            /* Prevent content from overflowing */
-            max-height: 100vh;
-            box-sizing: border-box;
-            padding: 20px;
         }
 
+        /* Checkmark Animation */
         .checkmark {
-            width: 150px;
-            height: 150px;
-            margin-bottom: 30px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: var(--success);
+            stroke-miterlimit: 10;
+            margin-bottom: 24px;
+            box-shadow: inset 0px 0px 0px var(--success);
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
         }
 
-        .message {
-            text-align: center;
-            font-size: 20px;
-            margin-bottom: 20px;
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: var(--success);
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
+
+        @keyframes scale {
+            0%, 100% { transform: none; }
+            50% { transform: scale3d(1.1, 1.1, 1); }
+        }
+
+        @keyframes fill {
+            100% { box-shadow: inset 0px 0px 0px 50px transparent; }
+        }
+
+        h2 {
+            margin: 0 0 8px 0;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--border);
+            width: 60%;
+            margin: 20px auto;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <svg class="checkmark" viewBox="0 0 52 52">
-            <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" stroke="#4CAF50" stroke-width="2"/>
-            <path class="checkmark__check" fill="none" stroke="#4CAF50" stroke-width="2" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-        </svg>
-        
-        <div class="message">
-            <p>配置成功！</p>
-            <p>Configuration successful!</p>
+        <!-- Header -->
+        <div class="header">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAA4CAMAAACPFEe1AAAAllBMVEUAAAAAb98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98Ab98ztS74AAAAMXRSTlMAzfeH3Ohw7Jy/sTeAFMhOCa3imCMYD2pjSEMpemymoJMw7tHEuXQeVT868uVc1o41FXqxVQAABIZJREFUaN7tWNm6mjAQVjZBFEGRTQUXwIqozfu/XI8HSEKGsLT9ai/47zIO4/zMSiYjRowYMWLEiFbYvndIFRYHb7UbZOZ63TYZN5t1gdixt42ay0lP7NwoluQZgCwZYar3ZvFjv1GPis/87TKNFjara/rpRhUf15oXnvj1eADs/ti8gLAJQSihVuTzVbcVPSJWLkfKcUV4i4415ZV2L1WfrzIsV7V6fjbPaobXb6FmdjngxagHLkq7ldsc1RFWKemXgj315hNa8/z9ywvRsEiG2UIhmnaURoJ6YtqWYQsE4RY/5dXZweFgNa2Jc2FEZ/xvm0rktfFw0QCIPCum0ahvvX/LEOvIA2o+Z1Dml+qYotrCI0SDEHN4SC36Pj4pZUWinihzc12dIz6POeqNtjx9cvVfXzWMDz8L1gLqiXVhPSHG+DwG4zKBsBAfW5LjxuA/PdYryubxUNFvQINNvk39B05y+Vo0LNQNJoYvbAqgseYMVWzARmNSYcHaOdeaTRJqtCB4a4h3JETm0ICQqng8EdJOPB5OzUHLX3IVb0dEw+Y3XjX7roIbjrUMjCEKMmxW92dOnQTgVEdmx0HHAhOCGsQQiBMrkG6lZLe6wRGi+e9zbX5Ij6+4BRoYRVs/2HJ9QwSbbtp7rIy9A82UDn4mvfOs8MN+ezYrUpwE1yg1qaCcTbYLHslDi+6OtW9U4Je03BzYB7PAKSVhG1HFGuOscWCMqrCd6iPVaJuHS6bJdeOAMHQiJeNq2tXkc466jAOCRQbd7RWGJ69EpUlPkNQNsQyPN353dGqTegbb+BRys2jnItAvm73ir4L8hmNioc1UCMQWa2Tk9dNEjD8hYt6b1ifTBHoOdYioQVXhxuQ8xFKgX5ncKyJzmojaRsRHMCNWsSBotY6kzwXh4jU0OiILSMf5CJE9M96I/gYoJVhwhwu1Tgx9hEiIPwQAtRR8/iTAftxQAcFHiCRsA9oikOxrUMcibZ+dZ8ePEDHYv3cRWwA6nDRpw5ZyIRv7R4ls4AqigIlrYbaQyALsHAWO0mwdLv89kRRhHMrGBokcGohsiVpESQvv8uv/RSSERGhTGHE1X1ZV5Vj/FxGrjcgJUUi800lPL0Sw/HyNdEcEfthAZP+aiA+W6SuRuG1EiKcEn4gIaKNTuFqZPCL8i6qP1QhJ9R3edu/4iwkQ6XldKfC7Vvx3iEzh1vRT+n7yRPXQ+C2Z4T2SfOLkjDkPNUK2wRp/J3sPyAUDlt2azgyxOSLw9u7meVldTX94gQk/EuHlyO2MIOZO/bpoSXu9h15HWCTS3FSyBUIoYIvvgxP/tmIbgnCkTENMavvCEn4dnOCU9agSFBp3IANn6hCU3t6dCYQ+vyOCp8huqFLhxxHeVChMjAhflX4TfrNP0Rmh82YyEOLsi0bCuTYzH9b6LAiCbIh6vYSmsoQrNdDkfL6rR9rK86Se1dcol+OqOrNEzkObd6+VimJqDyXiKKK4v/Fzz9svFgvXZyO2OjyI6Oa6P9nnXDdjRLZ7CPAhc93dZMSIESNGjBjB4hcQGITep8ngcgAAAABJRU5ErkJggg==" alt="Cimi Logo" class="logo-img">
+        </div>
+
+        <div class="card">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            
+            <h2>Success!</h2>
+            <p>Cấu hình thành công!</p>
+            <div class="divider"></div>
+            <p style="font-size: 0.9rem;">Cimi PetBot is starting up...</p>
         </div>
     </div>
     
@@ -54,19 +165,9 @@
         window.addEventListener('load', function() {
             // Send exit request after a short delay
             setTimeout(function() {
-                fetch('/exit', {
-                    method: 'POST'
-                })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Exit config mode request sent');
-                    } else {
-                        console.error('Failed to send exit request');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+                fetch('/exit', { method: 'POST' })
+                .then(response => console.log(response.ok ? 'Exit config mode request sent' : 'Failed to send exit request'))
+                .catch(error => console.error('Error:', error));
             }, 1000);
         });
     </script>
